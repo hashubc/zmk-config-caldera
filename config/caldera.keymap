@@ -15,7 +15,6 @@
     // | 宏定义 (Macros)                                                         |
     // -------------------------------------------------------------------------
     macros {
-        // [错误修正] 宏的 bindings 内部使用空格分隔，而不是逗号。
         macro_kill_line: macro_kill_line {
             compatible = "zmk,behavior-macro";
             label = "MACRO_KILL_LINE";
