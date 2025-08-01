@@ -1,4 +1,4 @@
-/dts-v1/;
+#include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
@@ -13,14 +13,12 @@
 
         default_layer {
             bindings = <
-                // 左半区 (5行×6列)
                 &kp GRAVE  &kp N1    &kp N2    &kp N3    &kp N4    &kp N5
                 &kp TAB    &kp Q     &kp W     &kp E     &kp R     &kp T
                 &kp ESC    &kp A     &kp S     &kp D     &kp F     &kp G
                 &kp LSHFT  &kp Z     &kp X     &kp C     &kp V     &kp B
                 &kp LCTRL  &kp LGUI  &kp LSHFT &mo _MAC_NAV &kp LALT &kp SPACE
                 
-                // 右半区 (5行×6列)
                 &kp N6     &kp N7    &kp N8    &kp N9    &kp N0    &kp BSPC
                 &kp Y      &kp U     &kp I     &kp O     &kp P     &kp BSLH
                 &kp H      &kp J     &kp K     &kp L     &kp SEMI  &kp RET
@@ -31,14 +29,12 @@
 
         mac_nav_layer {
             bindings = <
-                // 左半区
                 &trans     &trans    &trans    &trans    &trans    &trans
                 &trans     &trans    &trans    &kp END   &trans    &trans
                 &kp HOME   &trans    &kp DEL   &kp RIGHT &trans    &trans
                 &trans     &trans    &trans    &trans    &trans    &trans
                 &trans     &trans    &trans    &trans    &trans    &trans
                 
-                // 右半区
                 &trans     &trans    &trans    &trans    &trans    &trans
                 &trans     &trans    &trans    &trans    &trans    &kp UP
                 &trans     &trans    &trans    &trans    &trans    &trans
