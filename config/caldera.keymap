@@ -2,108 +2,134 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-// Layer Definitions
-#define _BASE    0
+#define _BASE 0
 #define _MAC_NAV 1
-#define _SYM     2
-#define _ADJ     3
+#define _SYM 2
+#define _ADJ 3
 
 / {
-    // Macro Definitions
     macros {
         del_to_sol: delete_to_start_of_line {
             compatible = "zmk,behavior-macro";
             label = "DEL_TO_SOL_WIN";
             #binding-cells = <0>;
-            // Select to start of line (Shift+Home), then delete (Backspace)
-            bindings = <&kp LS(HOME)>, <&kp BSPC>;
+            // 动作: Shift+Home, 然后 Backspace (删除到行首)
+            bindings = <&kp LS(HOME) &kp BSPC>;
         };
 
         del_to_eol: delete_to_end_of_line {
             compatible = "zmk,behavior-macro";
             label = "DEL_TO_EOL_WIN";
             #binding-cells = <0>;
-            // Select to end of line (Shift+End), then delete (Backspace)
-            bindings = <&kp LS(END)>, <&kp BSPC>;
+            // 动作: Shift+End, 然后 Backspace (删除到行尾)
+            bindings = <&kp LS(END) &kp BSPC>;
         };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-        /* LAYER 0: _BASE (QWERTY)
-         * ----------------------------------------------------------------------------------------------------------------------
-         * |   `    |   1    |   2    |   3    |   4    |   5    | | |   6    |   7    |   8    |   9    |   0    |  BSPC  |
-         * |  TAB   |   Q    |   W    |   E    |   R    |   T    | | |   Y    |   U    |   I    |   O    |   P    |   \    |
-         * |  ESC   |   A    |   S    |   D    |   F    |   G    | | |   H    |   J    |   K    |   L    |   ;    |  RET   |
-         * | LSHFT  |   Z    |   X    |   C    |   V    |   B    | | |   N    |   M    |   ,    |   .    |   /    |   '    |
-         * | LCTRL  |  LGUI  | LSHFT  | M-NAV  |  LALT  | SPACE  | | | SPACE  |  SYM   | M-NAV  |  RALT  | ->SYM  | RCTRL  |
-         * ----------------------------------------------------------------------------------------------------------------------
-         */
+        // ================================================================================================
+        // | LAYER 0: _BASE (QWERTY基础层)                                                                  |
+        // ================================================================================================
         default_layer {
+            /*
+             * .------------------------------------------------.  .------------------------------------------------.
+             * |   `  |   1  |   2  |   3  |   4  |   5  |        |   6  |   7  |   8  |   9  |   0  | BSPC |
+             * |------+------+------+------+------+------|        |------+------+------+------+------+------|
+             * |  TAB |   Q  |   W  |   E  |   R  |   T  |        |   Y  |   U  |   I  |   O  |   P  |  \   |
+             * |------+------+------+------+------+------|        |------+------+------+------+------+------|
+             * |  ESC |   A  |   S  |   D  |   F  |   G  |        |   H  |   J  |   K  |   L  |  ;  | ENTER|
+             * |------+------+------+------+------+------|        |------+------+------+------+------+------|
+             * | LSHFT|   Z  |   X  |   C  |   V  |   B  |        |   N  |   M  |  ,  |  .  |  /  |  '   |
+             * |------+------+------+------+------+------|  .----'------+------+------+------+------+------|
+             * | LCTRL| LGUI | LSHFT|MACNAV| LALT | SPACE|  | SPACE| SYM  |MACNAV| RALT |TO_SYM| RCTRL|
+             * '------------------------------------------------'  '------------------------------------------------'
+             */
             bindings = <
-                &kp GRAVE    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         /* | */ &kp N6       &kp N7       &kp N8       &kp N9       &kp N0       &kp BSPC
-                &kp TAB      &kp Q        &kp W        &kp E        &kp R        &kp T          /* | */ &kp Y        &kp U        &kp I        &kp O        &kp P        &kp BSLH
-                &kp ESC      &kp A        &kp S        &kp D        &kp F        &kp G          /* | */ &kp H        &kp J        &kp K        &kp L        &kp SEMI     &kp RET
-                &kp LSHFT    &kp Z        &kp X        &kp C        &kp V        &kp B          /* | */ &kp N        &kp M        &kp COMMA    &kp DOT      &kp FSLH     &kp APOS
-                &kp LCTRL    &kp LGUI     &kp LSHFT    &mo _MAC_NAV  &kp LALT     &kp SPACE      /* | */ &kp SPACE    &mo _SYM     &mo _MAC_NAV  &kp RALT     &to _SYM     &kp RCTRL
+                &kp GRAVE   &kp N1      &kp N2      &mo _MAC_NAV  &kp N4      &kp N5          &kp N6      &kp N7      &kp N8      &kp N9      &kp N0      &kp BSPC
+                &kp TAB     &kp Q       &kp W       &kp E         &kp R       &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P       &kp BSLH
+                &kp ESC     &kp A       &kp S       &kp D         &kp F       &kp G           &kp H       &kp J       &kp K       &kp L       &kp SEMI    &kp RET
+                &kp LSHFT   &kp Z       &kp X       &kp C         &kp V       &kp B           &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp APOS
+                &kp LCTRL   &kp LGUI    &kp LSHFT   &mo _MAC_NAV  &kp LALT    &kp SPACE       &kp SPACE   &mo _SYM    &mo _MAC_NAV  &kp RALT    &to _SYM    &kp RCTRL
             >;
         };
 
-        /* LAYER 1: _MAC_NAV (Navigation & Deletion)
-         * ----------------------------------------------------------------------------------------------------------------------
-         * | TRNS   |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  | | |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |
-         * | TRNS   |  TRNS  |  TRNS  |  END   |  TRNS  |  TRNS  | | |  TRNS  | DEL<|  | |DEL>  |  TRNS  |  TRNS  |   UP   |
-         * | HOME   |  TRNS  |  DEL   | RIGHT  |  TRNS  |  TRNS  | | |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |
-         * | TRNS   |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  LEFT  | | |  DOWN  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |
-         * | TRNS   |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  | | |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |
-         * ----------------------------------------------------------------------------------------------------------------------
-         */
+        // ================================================================================================
+        // | LAYER 1: _MAC_NAV (导航层，包含自定义删除宏)                                                   |
+        // ================================================================================================
         mac_nav_layer {
+            /*
+             * .------------------------------------------------.  .------------------------------------------------.
+             * |      |      |      |      |      |      |        |      |      |      |      |      |      |
+             * |------+------+------+------+------+------|        |------+------+------+------+------+------|
+             * |      |      |      | END  |      |      |        |      |DEL_SOL|DEL_EOL|      |      |  UP  |
+             * |------+------+------+------+------+------|        |------+------+------+------+------+------|
+             * | HOME |      | DEL  |RIGHT |      |      |        |      |      |      |      |      |      |
+             * |------+------+------+------+------+------|        |------+------+------+------+------+------|
+             * |      |      |      |      |      | LEFT |        | DOWN |      |      |      |      |      |
+             * |------+------+------+------+------+------|  .----'------+------+------+------+------+------|
+             * |      |      |      |      |      |      |  |      |      |      |      |      |      |
+             * '------------------------------------------------'  '------------------------------------------------'
+             */
             bindings = <
-                &trans       &trans       &trans       &trans       &trans       &trans         /* | */ &trans       &trans       &trans       &trans       &trans       &trans
-                &trans       &trans       &trans       &kp END      &trans       &trans         /* | */ &trans       &del_to_sol  &del_to_eol  &trans       &trans       &kp UP
-                &kp HOME     &trans       &kp DEL      &kp RIGHT    &trans       &trans         /* | */ &trans       &trans       &trans       &trans       &trans       &trans
-                &trans       &trans       &trans       &trans       &trans       &kp LEFT       /* | */ &kp DOWN     &trans       &trans       &trans       &trans       &trans
-                &trans       &trans       &trans       &trans       &trans       &trans         /* | */ &trans       &trans       &trans       &trans       &trans       &trans
+                &trans      &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans      &trans
+                &trans      &trans      &trans      &kp END     &trans      &trans          &trans      &del_to_sol &del_to_eol &trans      &trans      &kp UP
+                &kp HOME    &trans      &kp DEL     &kp RIGHT   &trans      &trans          &trans      &trans      &trans      &trans      &trans      &trans
+                &trans      &trans      &trans      &trans      &trans      &kp LEFT        &kp DOWN    &trans      &trans      &trans      &trans      &trans
+                &trans      &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans      &trans
             >;
         };
 
-        /* LAYER 2: _SYM (Symbols & Functions)
-         * ----------------------------------------------------------------------------------------------------------------------
-         * | TRNS   |   F1   |   F2   |   F3   |   F4   |   F5   | | |   F6   |   F7   |   F8   |   F9   |  F10   |  F11   |
-         * | TRNS   |  TRNS  |   UP   |  TRNS  |  TRNS  |  TRNS  | | |    _   |    +   |    [   |    ]   |  TRNS  |  F12   |
-         * | ->ADJ  |  LEFT  |  DOWN  | RIGHT  |  TRNS  |  TRNS  | | |    -   |    =   |    {   |    }   |  TRNS  |  TRNS  |
-         * | TRNS   |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  | | |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |
-         * | TRNS   |  TRNS  |  TRNS  |  TRNS  |  TRNS  | ->BASE | | |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  | ->BASE |
-         * ----------------------------------------------------------------------------------------------------------------------
-         */
+        // ================================================================================================
+        // | LAYER 2: _SYM (符号与功能键层)                                                                 |
+        // ================================================================================================
         sym_layer {
+            /*
+             * .------------------------------------------------.  .------------------------------------------------.
+             * |      |  F1  |  F2  |  F3  |  F4  |  F5  |        |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |
+             * |------+------+------+------+------+------|        |------+------+------+------+------+------|
+             * |      |      |  UP  |      |      |      |        |   _  |   +  |   [  |   ]  |      |  F12 |
+             * |------+------+------+------+------+------|        |------+------+------+------+------+------|
+             * |TO_ADJ| LEFT | DOWN |RIGHT |      |      |        |   -  |   =  |   {  |   }  |      |      |
+             * |------+------+------+------+------+------|        |------+------+------+------+------+------|
+             * |      |      |      |      |      |      |        |      |      |      |      |      |      |
+             * |------+------+------+------+------+------|  .----'------+------+------+------+------+------|
+             * |      |      |      |      |      |TO_BASE|  |      |      |      |      |      |TO_BASE|
+             * '------------------------------------------------'  '------------------------------------------------'
+             */
             bindings = <
-                &trans       &kp F1       &kp F2       &kp F3       &kp F4       &kp F5         /* | */ &kp F6       &kp F7       &kp F8       &kp F9       &kp F10      &kp F11
-                &trans       &trans       &kp UP       &trans       &trans       &trans         /* | */ &kp UNDER    &kp PLUS     &kp LBKT     &kp RBKT     &trans       &kp F12
-                &to _ADJ     &kp LEFT     &kp DOWN     &kp RIGHT    &trans       &trans         /* | */ &kp MINUS    &kp EQUAL    &kp LBRC     &kp RBRC     &trans       &trans
-                &trans       &trans       &trans       &trans       &trans       &trans         /* | */ &trans       &trans       &trans       &trans       &trans       &trans
-                &trans       &trans       &trans       &trans       &trans       &to _BASE      /* | */ &trans       &trans       &trans       &trans       &trans       &to _BASE
+                &trans      &kp F1      &kp F2      &kp F3      &kp F4      &kp F5          &kp F6      &kp F7      &kp F8      &kp F9      &kp F10     &kp F11
+                &trans      &trans      &kp UP      &trans      &trans      &trans          &kp UNDER   &kp PLUS    &kp LBKT    &kp RBKT    &trans      &kp F12
+                &to _ADJ    &kp LEFT    &kp DOWN    &kp RIGHT   &trans      &trans          &kp MINUS   &kp EQUAL   &kp LBRC    &kp RBRC    &trans      &trans
+                &trans      &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans      &trans
+                &trans      &trans      &trans      &trans      &trans      &to _BASE       &trans      &trans      &trans      &trans      &trans      &to _BASE
             >;
         };
-
-        /* LAYER 3: _ADJ (Adjust & Bluetooth)
-         * ----------------------------------------------------------------------------------------------------------------------
-         * | TRNS   |  BT 0  |  BT 1  |  BT 2  |  BT 3  |  BT 4  | | |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  | BT CLR |
-         * | TRNS   |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  | | |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |
-         * | TRNS   |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  | | |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |
-         * | TRNS   |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  | | |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |
-         * | TRNS   |  TRNS  |  TRNS  |  TRNS  |  TRNS  | ->BASE | | |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS  |
-         * ----------------------------------------------------------------------------------------------------------------------
-         */
+        
+        // ================================================================================================
+        // | LAYER 3: _ADJ (蓝牙与调节层)                                                                   |
+        // ================================================================================================
         adj_layer {
+            /*
+             * .------------------------------------------------.  .------------------------------------------------.
+             * |      | BT 0 | BT 1 | BT 2 | BT 3 | BT 4 |        |      |      |      |      |      |BT CLR|
+             * |------+------+------+------+------+------|        |------+------+------+------+------+------|
+             * |      |      |      |      |      |      |        |      |      |      |      |      |      |
+             * |------+------+------+------+------+------|        |------+------+------+------+------+------|
+             * |      |      |      |      |      |      |        |      |      |      |      |      |      |
+             * |------+------+------+------+------+------|        |------+------+------+------+------+------|
+             * |      |      |      |      |      |      |        |      |      |      |      |      |      |
+             * |------+------+------+------+------+------|  .----'------+------+------+------+------+------|
+             * |      |      |      |      |      |TO_BASE|  |      |      |      |      |      |      |
+             * '------------------------------------------------'  '------------------------------------------------'
+             */
             bindings = <
-                &trans       &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   /* | */ &trans       &trans       &trans       &trans       &trans       &bt BT_CLR
-                &trans       &trans       &trans       &trans       &trans       &trans         /* | */ &trans       &trans       &trans       &trans       &trans       &trans
-                &trans       &trans       &trans       &trans       &trans       &trans         /* | */ &trans       &trans       &trans       &trans       &trans       &trans
-                &trans       &trans       &trans       &trans       &trans       &trans         /* | */ &trans       &trans       &trans       &trans       &trans       &trans
-                &trans       &trans       &trans       &trans       &trans       &to _BASE      /* | */ &trans       &trans       &trans       &trans       &trans       &trans
+                &trans      &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans      &trans      &trans      &trans      &trans      &bt BT_CLR
+                &trans      &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans      &trans
+                &trans      &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans      &trans
+                &trans      &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans      &trans
+                &trans      &trans      &trans      &trans      &trans      &to _BASE       &trans      &trans      &trans      &trans      &trans      &trans
             >;
         };
     };
