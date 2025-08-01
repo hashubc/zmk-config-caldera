@@ -14,10 +14,10 @@
             label = "MACRO_KILL_LINE";
             #binding-cells = <0>;
             bindings = <
-                ¯o_press &kp LSHFT
-                ¯o_tap &kp END
-                ¯o_release &kp LSHFT
-                ¯o_tap &kp DEL
+                ¯o_press &kp LSHFT   // Press and hold Shift
+                ¯o_tap &kp END       // Tap End
+                ¯o_release &kp LSHFT // Release Shift
+                ¯o_tap &kp DEL       // Tap Delete
             >;
         };
 
@@ -26,10 +26,10 @@
             label = "MACRO_KILL_TO_START";
             #binding-cells = <0>;
             bindings = <
-                ¯o_press &kp LSHFT
-                ¯o_tap &kp HOME
-                ¯o_release &kp LSHFT
-                ¯o_tap &kp DEL
+                ¯o_press &kp LSHFT   // Press and hold Shift
+                ¯o_tap &kp HOME      // Tap Home
+                ¯o_release &kp LSHFT // Release Shift
+                ¯o_tap &kp DEL       // Tap Delete
             >;
         };
     };
@@ -40,14 +40,14 @@
         // LAYER 0: _BASE
         default_layer {
             bindings = <
-                // 左半区
+                // Left Half
                 &kp GRAVE  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5
                 &kp TAB    &kp Q   &kp W   &kp E   &kp R   &kp T
                 &kp ESC    &kp A   &kp S   &kp D   &kp F   &kp G
                 &kp LSHFT  &kp Z   &kp X   &kp C   &kp V   &kp B
                 &kp LCTRL  &kp LGUI &kp LSHFT &mo _MAC_NAV &kp LALT &kp SPACE
                 
-                // 右半区
+                // Right Half
                 &kp N6     &kp N7    &kp N8    &kp N9    &kp N0    &kp BSPC
                 &kp Y      &kp U     &kp I     &kp O     &kp P     &kp BSLH
                 &kp H      &kp J     &kp K     &kp L     &kp SEMI  &kp RET
@@ -56,26 +56,26 @@
             >;
         };
 
-        // LAYER 1: _MAC_NAV (修正宏调用和键位)
+        // LAYER 1: _MAC_NAV
         mac_nav_layer {
             bindings = <
-                // 左半区
+                // Left Half
                 &trans   &trans    &trans    &trans     &trans     &trans
                 &trans   &trans    &trans    &kp END    &trans     &trans
                 &trans   &kp HOME  &trans    &kp DEL    &kp RIGHT  &trans
                 &trans   &trans    &trans    &trans     &trans     &kp LEFT
                 &trans   &trans    &trans    &trans     &trans     &trans
                 
-                // 右半区
+                // Right Half
                 &trans   &trans                   &trans    &trans  &kp UP   &trans
-                &trans   &macro_kill_to_start     &trans    &trans  &trans   &trans
-                &trans   &trans                   &macro_kill_line &trans  &trans   &trans
+                &trans   ¯o_kill_to_start     &trans    &trans  &trans   &trans
+                &trans   &trans                   ¯o_kill_line &trans  &trans   &trans
                 &kp DOWN &trans                   &trans    &trans  &trans   &trans
                 &trans   &trans                   &trans    &trans  &trans   &trans
             >;
         };
 
-        // LAYER 2: _SYM (保持原设计)
+        // LAYER 2: _SYM
         sym_layer {
             bindings = <
                 &trans   &kp F1  &kp F2  &kp F3  &kp F4   &kp F5
@@ -92,7 +92,7 @@
             >;
         };
 
-        // LAYER 3: _ADJ (保持原设计)
+        // LAYER 3: _ADJ
         adj_layer {
             bindings = <
                 &trans  &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
