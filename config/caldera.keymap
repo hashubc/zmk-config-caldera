@@ -10,9 +10,9 @@
 / {
     macros {
         macro_kill_line: macro_kill_line { compatible = "zmk,behavior-macro"; label = "MACRO_KILL_LINE"; #binding-cells = <0>; 
-            bindings = <¯o_press &kp LSHFT ¯o_tap &kp END ¯o_release &kp LSHFT ¯o_tap &kp DEL>; };
+            bindings = <&macro_press &kp LSHFT &macro_tap &kp END &macro_release &kp LSHFT &macro_tap &kp DEL>; };
         macro_kill_to_start: macro_kill_to_start { compatible = "zmk,behavior-macro"; label = "MACRO_KILL_TO_START"; #binding-cells = <0>;
-            bindings = <¯o_press &kp LSHFT ¯o_tap &kp HOME ¯o_release &kp LSHFT ¯o_tap &kp DEL>; };
+            bindings = <&macro_press &kp LSHFT &macro_tap &kp HOME &macro_release &kp LSHFT &macro_tap &kp DEL>; };
     };
 
     keymap {
@@ -27,10 +27,10 @@
         &kp LCTRL &kp LGUI &kp LSHFT &mo _MAC_NAV &kp LALT &kp SPACE   &kp SPACE &mo _SYM &mo _MAC_NAV &kp RALT &to _SYM &kp RCTRL
         >; };
 
-        /* LAYER 1: _MAC_NAV (修复宏调用) */
+        /* LAYER 1: _MAC_NAV */
         mac_nav_layer { bindings = <
         &trans &trans &trans &trans &trans &trans            &trans &trans &trans &trans &trans &trans
-        &trans &trans &trans &kp END &trans &trans          &trans &macro_kill_to_start &trans &trans &kp UP &trans  // 修复此行
+        &trans &trans &trans &kp END &trans &trans          &trans &macro_kill_to_start &trans &trans &kp UP &trans
         &kp HOME &trans &kp DEL &kp RIGHT &trans &trans      &trans &trans &macro_kill_line &trans &trans &trans
         &trans &trans &trans &trans &trans &kp LEFT          &kp DOWN &trans &trans &trans &trans &trans
         &trans &trans &trans &trans &trans &trans            &trans &trans &trans &trans &trans &trans
