@@ -1,6 +1,5 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/macro.h> // 添加宏支持头文件
 
 #define _BASE 0
 #define _MAC_NAV 1
