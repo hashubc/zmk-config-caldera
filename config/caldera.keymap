@@ -30,17 +30,17 @@
             >;
         };
 
-        /* LAYER 1: _MAC_NAV */
+        /* LAYER 1: _MAC_NAV (简化版) */
         mac_nav_layer {
             bindings = <
                 &trans     &trans    &trans    &trans    &trans    &trans
                 &trans     &trans    &trans    &trans    &trans    &trans
                 
                 &trans     &trans    &trans    &kp END   &trans    &trans
-                &trans     &kp LSHFT &kp LGUI  &kp HOME  &trans    &kp UP
+                &trans     &trans    &trans    &trans    &trans    &kp UP
                 
                 &kp HOME   &trans    &kp DEL   &kp RIGHT &trans    &trans
-                &trans     &trans    &kp LSHFT &kp LGUI  &kp END   &trans
+                &trans     &trans    &trans    &trans    &trans    &trans
                 
                 &trans     &trans    &trans    &trans    &trans    &kp LEFT
                 &kp DOWN   &trans    &trans    &trans    &trans    &trans
