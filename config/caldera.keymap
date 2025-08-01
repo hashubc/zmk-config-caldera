@@ -45,10 +45,10 @@
         &trans &trans &trans &trans &trans &to _BASE          &trans &trans &trans &trans &trans &to _BASE
         >; };
 
-        /* LAYER 3: _ADJ (修复输出切换) */
+        /* LAYER 3: _ADJ */
         adj_layer { bindings = <
         &trans &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &trans &trans &trans &trans &trans &bt BT_CLR
-        &out OUT_TOG &trans &trans &trans &trans &trans                          &trans &trans &trans &trans &trans &trans
+        &trans &trans &trans &trans &trans &trans                          &trans &trans &trans &trans &trans &trans
         &trans &trans &trans &trans &trans &trans                                &trans &trans &trans &trans &trans &trans
         &trans &trans &trans &trans &trans &trans                                &trans &trans &trans &trans &trans &trans
         &trans &trans &trans &trans &trans &to _BASE                             &trans &trans &trans &trans &trans &trans
