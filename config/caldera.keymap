@@ -8,28 +8,20 @@
 
 / {
     behaviors {
-        // 使用更可靠的方式定义宏
-        macro_kill_line: macro_kill_line {
-            compatible = "zmk,behavior-macro";
-            label = "MACRO_KILL_LINE";
+        // 使用组合键替代宏功能
+        kill_to_start: kill_to_start {
+            compatible = "zmk,behavior-mod-morph";
+            label = "KILL_TO_START";
             #binding-cells = <0>;
-            bindings = <
-                &macro_press &kp LSHFT
-                &macro_tap &kp END
-                &macro_release &kp LSHFT
-                &macro_tap &kp DEL
-            >;
+            bindings = <&kp LSHFT>, <&kp HOME>;
+            mods = <(MOD_LSFT)>;
         };
-        macro_kill_to_start: macro_kill_to_start {
-            compatible = "zmk,behavior-macro";
-            label = "MACRO_KILL_TO_START";
+        kill_line: kill_line {
+            compatible = "zmk,behavior-mod-morph";
+            label = "KILL_LINE";
             #binding-cells = <0>;
-            bindings = <
-                &macro_press &kp LSHFT
-                &macro_tap &kp HOME
-                &macro_release &kp LSHFT
-                &macro_tap &kp DEL
-            >;
+            bindings = <&kp LSHFT>, <&kp END>;
+            mods = <(MOD_LSFT)>;
         };
     };
 
@@ -45,11 +37,11 @@
         &kp LCTRL &kp LGUI &kp LSHFT &mo _MAC_NAV &kp LALT &kp SPACE   &kp SPACE &mo _SYM &mo _MAC_NAV &kp RALT &to _SYM &kp RCTRL
         >; };
 
-        /* LAYER 1: _MAC_NAV */
+        /* LAYER 1: _MAC_NAV (修正宏替代方案) */
         mac_nav_layer { bindings = <
         &trans &trans &trans &trans &trans &trans            &trans &trans &trans &trans &trans &trans
-        &trans &trans &trans &kp END &trans &trans          &trans &macro_kill_to_start &trans &trans &kp UP &trans
-        &kp HOME &trans &kp DEL &kp RIGHT &trans &trans      &trans &trans &macro_kill_line &trans &trans &trans
+        &trans &trans &trans &kp END &trans &trans          &trans &kill_to_start &trans &trans &kp UP &trans
+        &kp HOME &trans &kp DEL &kp RIGHT &trans &trans      &trans &trans &kill_line &trans &trans &trans
         &trans &trans &trans &trans &trans &kp LEFT          &kp DOWN &trans &trans &trans &trans &trans
         &trans &trans &trans &trans &trans &trans            &trans &trans &trans &trans &trans &trans
         >; };
@@ -63,10 +55,10 @@
         &trans &trans &trans &trans &trans &to _BASE          &trans &trans &trans &trans &trans &to _BASE
         >; };
 
-        /* LAYER 3: _ADJ */
+        /* LAYER 3: _ADJ (移除OUT_TOG) */
         adj_layer { bindings = <
         &trans &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &trans &trans &trans &trans &trans &bt BT_CLR
-        &trans &trans &trans &trans &trans &trans                          &trans &trans &trans &trans &trans &trans
+        &trans &trans &trans &trans &trans &trans                                &trans &trans &trans &trans &trans &trans
         &trans &trans &trans &trans &trans &trans                                &trans &trans &trans &trans &trans &trans
         &trans &trans &trans &trans &trans &trans                                &trans &trans &trans &trans &trans &trans
         &trans &trans &trans &trans &trans &to _BASE                             &trans &trans &trans &trans &trans &trans
