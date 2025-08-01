@@ -13,10 +13,10 @@
             compatible = "zmk,behavior-macro";
             label = "DEL_TO_SOL_WIN";
             #binding-cells = <0>;
-            // --- 修正点：移除了步骤之间的逗号 ---
-            bindings = <¯o_press &kp LSHFT>
-                       <¯o_tap &kp HOME>
-                       <¯o_release &kp LSHFT>
+            // --- 修正点：在每个宏步骤之间加上逗号 ---
+            bindings = <¯o_press &kp LSHFT>,
+                       <¯o_tap &kp HOME>,
+                       <¯o_release &kp LSHFT>,
                        <¯o_tap &kp BSPC>;
         };
 
@@ -24,10 +24,10 @@
             compatible = "zmk,behavior-macro";
             label = "DEL_TO_EOL_WIN";
             #binding-cells = <0>;
-            // --- 修正点：移除了步骤之间的逗号 ---
-            bindings = <¯o_press &kp LSHFT>
-                       <¯o_tap &kp END>
-                       <¯o_release &kp LSHFT>
+            // --- 修正点：在每个宏步骤之间加上逗号 ---
+            bindings = <¯o_press &kp LSHFT>,
+                       <¯o_tap &kp END>,
+                       <¯o_release &kp LSHFT>,
                        <¯o_tap &kp BSPC>;
         };
     };
