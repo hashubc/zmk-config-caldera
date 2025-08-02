@@ -43,7 +43,7 @@
              * |------+------+------+------+------+------|        |------+------+------+------+------+------|
              * | LSHFT|   Z  |   X  |   C  |   V  |   B  |        |   N  |   M  |  ,   |  .   |  /   |  '   |
              * |------+------+------+------+------+------|        +----+------+------+------+------+------+-|
-             * | LCTRL| LGUI | LALT |MACNAV| LCTRL |SYM  |        | SPACE| LALT  |MACNAV|     |TO_SYM|    |
+             * | LCTRL| LGUI | LALT |MACNAV| LCTRL|SPACE|      | _SYM| LALT  |MACNAV| LSHFT    |TO_SYM|    |
              * '------------------------------------------'       '-----------------------------------------'
              */
             bindings = <
@@ -51,7 +51,7 @@
                 &kp TAB     &kp Q       &kp W       &kp E         &kp R       &kp T              &kp Y       &kp U       &kp I       &kp O       &kp P       &kp BSLH
                 &kp ESC     &kp A       &kp S       &kp D         &kp F       &kp G              &kp H       &kp J       &kp K       &kp L       &kp SEMI    &kp RET
                 &kp LSHFT   &kp Z       &kp X       &kp C         &kp V       &kp B              &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp APOS
-                &kp LCTRL   &kp LGUI    &kp LALT   &mo _MAC_NAV   &kp LCTRL   &mo _SYM           &kp SPACE   &kp LALT    &mo _MAC_NAV  &trans    &to _SYM    &trans
+                &kp LCTRL   &kp LGUI    &mo _SYM   &mo _MAC_NAV   &kp LCTRL   &kp SPACE          &kp SPACE   &kp LALT    &kp LSHFT   &trans    &to _SYM    &trans
             >;   
         };
 
