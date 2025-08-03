@@ -43,7 +43,7 @@
              * |------+------+------+------+------+------|        |------+------+------+------+------+------|
              * | LSHFT|   Z  |   X  |   C  |   V  |   B  |        |   N  |   M  |  ,   |  .   |  /   |  '   |
              * |------+------+------+------+------+------|        +----+------+------+------+------+------+-|
-             * | LCTRL| LGUI | LALT |MACNAV| LCTRL|SPACE|         | SPACE| LALT  |LSHFT| _SYM |TO_SYM|    |
+             * | LCTRL| LGUI | LALT |MACNAV| LCTRL|SPACE|         | SPACE| LALT  |LSHFT|  -  | _SYM |TO_SYM|
              * '------------------------------------------'       '-----------------------------------------'
              */
             bindings = <
@@ -51,7 +51,7 @@
                 &kp TAB     &kp Q       &kp W       &kp E         &kp R       &kp T              &kp Y       &kp U       &kp I       &kp O       &kp P       &kp BSLH
                 &kp ESC     &kp A       &kp S       &kp D         &kp F       &kp G              &kp H       &kp J       &kp K       &kp L       &kp SEMI    &kp RET
                 &kp LSHFT   &kp Z       &kp X       &kp C         &kp V       &kp B              &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp APOS
-                &kp LCTRL   &kp LGUI    &kp LALT    &mo _MAC_NAV   &kp LCTRL   &kp SPACE          &kp SPACE   &kp LALT    &kp LSHFT   &mo _SYM    &to _SYM    &trans
+                &kp LCTRL   &kp LGUI    &kp LALT    &mo _MAC_NAV  &kp LCTRL   &kp SPACE          &kp SPACE   &kp LALT    &kp LSHFT   &kp MINUS   &mo _SYM    &to _SYM
             >;   
         };
 
@@ -99,11 +99,11 @@
              * '------------------------------------------------'                            '------------------------------------------------'
              */
             bindings = <
-                &trans      &kp F1      &kp F2      &kp F3      &kp F4      &kp F5          &kp F6      &kp F7      &kp F8      &kp F9      &kp F10     &kp F11
-                &trans      &kp HOME    &kp UP      &kp END     &del_to_sol      &trans     &trans      &trans      &trans    &trans    &trans      &kp F12
-                &to _ADJ    &kp LEFT    &kp DOWN    &kp RIGHT   &del_to_eol      &trans     &kp UNDER   &kp PLUS    &kp LBRC    &kp RBRC      &trans        &trans
-                &trans      &trans      &trans      &trans      &trans      &trans          &kp MINUS   &kp EQUAL   &kp LBKT    &kp RBKT      &trans           &trans
-                &trans      &trans      &trans      &trans      &trans      &to _BASE       &to _BASE   &trans      &trans      &trans      &trans      &trans
+                &trans      &kp F1      &kp F2      &kp F3      &kp F4       &kp F5          &kp F6      &kp F7      &kp F8      &kp F9      &kp F10     &kp F11
+                &trans      &kp HOME    &kp UP      &kp END     &del_to_sol  &trans          &trans      &trans      &trans    &trans    &trans      &kp F12
+                &to _ADJ    &kp LEFT    &kp DOWN    &kp RIGHT   &del_to_eol  &trans          &kp UNDER   &kp PLUS    &kp LBRC    &kp RBRC      &trans        &trans
+                &trans      &trans      &trans      &trans      &trans       &trans          &kp MINUS   &kp EQUAL   &kp LBKT    &kp RBKT      &trans           &trans
+                &trans      &trans      &trans      &trans      &trans       &to _BASE       &to _BASE   &trans      &trans      &trans      &trans      &trans
             >;
         };
         
